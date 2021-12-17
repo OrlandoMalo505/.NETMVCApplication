@@ -6,8 +6,9 @@ using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
 {
-   [Route("api/[controller]")]
 
+
+   [Route("api/[controller]")]
     public class UserController : Controller
     {
         [Authorize(Roles = "USER")]
@@ -105,20 +106,25 @@ namespace WebApplication3.Controllers
         public IActionResult EditUser(int id, User umodel)
         {
             
-            var session = HttpContext.Session.GetInt32("CurrentRole");
-            if ((Role)session == Role.ADMIN)
-            {
-                User user = new User();
-                int result = user.EditUser(umodel, Role.ADMIN);
-                return RedirectToAction("AllUsers");
-            }
-            else if ((Role)session == Role.USER)
-            {
-                User user = new User();
-                user.EditUser(umodel, Role.USER);
 
-                return RedirectToAction("GetSingleUser","user", new { id = id });
-            }
+                    var session = HttpContext.Session.GetInt32("CurrentRole");
+                    if ((Role)session == Role.ADMIN)
+                    {
+                        User user = new User();
+
+                        int result = user.EditUser(umodel, Role.ADMIN);
+                        return RedirectToAction("AllUsers");
+                    }
+                    else if ((Role)session == Role.USER)
+                    {
+                        User user = new User();
+                        user.EditUser(umodel, Role.USER);
+
+
+                        return RedirectToAction("GetSingleUser", "user", new { id = id });
+                    }
+                
+            
             return View("~/Views/Home/EditUser.cshtml");
         }
         

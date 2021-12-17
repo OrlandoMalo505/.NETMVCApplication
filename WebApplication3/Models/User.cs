@@ -125,13 +125,13 @@ namespace WebApplication3.Models
 
         public int EditUser(User umodel, Role role)
         {
-            var connetionString = @"Data Source=DESKTOP-D29MF8M;Initial Catalog=login;User ID=firstapp;Password=login";
-            SqlConnection con = new SqlConnection(connetionString);
+            Database datab = new Database();
+            var cnn = datab.database();
 
             string query = "Update Users set FirstName= @FirstName, LastName=@LastName, Age = @Age, Address=@Address , State=@State, City=@City , ZipCode=@ZipCode ,Role=@Role ,Username=@Username ,Password=@Password where id=@id";
 
-            SqlCommand cmd = new SqlCommand(query, con);
-            con.Open();
+            SqlCommand cmd = new SqlCommand(query, cnn);
+            cnn.Open();
             cmd.Parameters.AddWithValue("Firstname", umodel.FirstName);
             cmd.Parameters.AddWithValue("LastName", umodel.LastName);
             cmd.Parameters.AddWithValue("Age", umodel.Age);
@@ -145,7 +145,7 @@ namespace WebApplication3.Models
             cmd.Parameters.AddWithValue("Id", umodel.Id);
 
             int i = cmd.ExecuteNonQuery();
-            con.Close();
+            cnn.Close();
             return i;
         }
 

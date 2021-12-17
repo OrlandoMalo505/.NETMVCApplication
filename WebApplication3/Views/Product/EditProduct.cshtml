@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>New Product</title>
+    <title>Edit Product</title>
      <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
@@ -16,7 +16,7 @@
 <body>
  
         
-        <form  method="post" action="/api/users/newProduct">
+        <form  method="post" action="/api/users/products/edit/@Model.ProductId">
             <p>
            @Html.Label("Product Name:")
            @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control"})
@@ -60,3 +60,4 @@
 
 </body>
 </html>
+

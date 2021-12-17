@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using WebApplication3.Models;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
@@ -32,6 +31,7 @@ namespace WebApplication3.Controllers
             {
 
                 HttpContext.Session.SetInt32("CurrentRole", user.Role);
+                HttpContext.Session.SetInt32("CurrentId", user.Id);
 
                 ClaimsIdentity identity = null;
                 bool isAuthenticate = false;
@@ -86,6 +86,8 @@ namespace WebApplication3.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("CurrentRole");
+            HttpContext.Session.Remove("CurrentId");
+
             return RedirectToAction("Login","Login");
         }
 
@@ -100,9 +102,6 @@ namespace WebApplication3.Controllers
             ViewBag.Error = "You are not authorized to view this page.";
             return View();
         }
-        
-
-
 
     }
 }
