@@ -1,0 +1,58 @@
+﻿@model User
+
+
+@{
+    Layout ="~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User Details</title>
+     <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+   
+<table border=1>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                     <th>Age</th>
+                     <th>Address</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Zip Code</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Show Products</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>@Model.FirstName</td>
+                    <td>@Model.LastName</td>
+                    <td>@Model.Age</td>
+                    <td>@Model.Address</td>
+                    <td>@Model.State</td>
+                    <td>@Model.City</td>
+                    <td>@Model.ZipCode</td>
+                    <td>@Model.Username</td>
+                    <td>@Model.Password</td>
+                    <td><a  class="btn btn-info" href="/api/users/edit/@Model.Id">Edit</a></td>
+                    <td><a href="~/api/users/delete/@Model.Id" id="deleteBtn" class="btn bg-danger mr-1" onclick="return confirm('Are you sure you want to delete?');"><i class="fas fa-trash-alt text-white"></i>Delete</a></td>
+                    <td><a class="btn btn-info" href="/api/users/products/@Model.Id">Show Products</a></td>
+                </tr>
+                
+            </tbody>
+        </table>
+</body>
+</html>

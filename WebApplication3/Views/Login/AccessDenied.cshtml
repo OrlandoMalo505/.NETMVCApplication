@@ -1,0 +1,33 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Access Denied</title>
+   <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+  
+</head>
+
+<body>
+
+
+<h3><b>Access Denied:</b></h3>
+
+
+
+    
+<p style="color:red">
+    @ViewBag.Error
+</p>
+<p><a href="/Login">Login </a></p>
+
+</body>
+</html>

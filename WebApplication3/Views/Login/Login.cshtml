@@ -1,0 +1,57 @@
+﻿@model User
+
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+   <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+  
+</head>
+
+<body>
+
+
+<h3><b>Please Login:</b></h3>
+ 
+<form action="Login" method="post" class="form-group">
+   
+
+
+        <p>
+           @Html.Label("Username:")
+           @Html.TextBoxFor(model => model.Username, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.Username)
+           </p>
+
+           <p>
+           @Html.Label("Password:")
+           @Html.PasswordFor(model => model.Password, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.Password)
+           </p>
+
+           <p>
+               <input type="submit" class="btn btn-primary btn-lg" value="Login" />
+           </p>
+          
+</form>
+
+<p style="color:red">
+    @ViewBag.Error
+</p>
+
+ <p>
+  <a href="/api/signup"> Not registered yet? Create an account.</a>
+ </p>
+
+
+</body>
+</html>

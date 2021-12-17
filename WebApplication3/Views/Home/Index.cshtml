@@ -1,0 +1,64 @@
+﻿
+@model List<User>
+
+
+@{
+    Layout = Layout ="~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All Users</title>
+     <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+ 
+</head>
+<body>
+   
+<table id="users" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                     <th>Age</th>
+                     <th>Address</th>
+                    <th>State</th>
+                    <th>City</th>
+                    <th>Zip Code</th>
+                     <th>Role</th>
+                     <th>Username</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (User user in Model){
+                <tr>
+                    <td>@user.FirstName</td>
+                    <td>@user.LastName</td>
+                    <td>@user.Age</td>
+                    <td>@user.Address</td>
+                    <td>@user.State</td>
+                    <td>@user.City</td>
+                    <td>@user.ZipCode</td>
+                    <td>@user.RoleEnum</td>
+                    <td>@user.Username</td>
+                    <td><a class="btn btn-info" href="/api/users/edit/@user.Id">Edit</a></td>
+                    <td><a href="~/api/users/delete/@user.Id" id="deleteBtn" class="btn bg-danger mr-1" onclick="return confirm('Are you sure you want to delete?');"><i class="fas fa-trash-alt text-white"></i>Delete</a></td>
+                   
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <p>
+            <a href="/api/newUser" class="btn btn-primary btn-lg">Create New User</a> 
+        </p>
+</body>
+</html>
+

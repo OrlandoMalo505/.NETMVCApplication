@@ -1,0 +1,87 @@
+﻿@model User
+
+
+@{
+    Layout ="~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>New Product</title>
+     <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+ 
+        
+        <form  method="post" action="/api/newProduct">
+            <p>
+           @Html.Label("First Name:")
+           @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.FirstName)
+           </p>
+           <p>
+           @Html.Label("Last Name:")
+           @Html.TextBoxFor(model => model.LastName, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.LastName)
+           </p>
+
+           <p>
+           @Html.Label("Age:")
+           @Html.TextBoxFor(model => model.Age, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.Age)
+           </p>
+           
+            <p>
+           @Html.Label("Address:")
+           @Html.TextBoxFor(model => model.Address, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.Address)
+           </p>
+
+            <p>
+           @Html.Label("State:")
+           @Html.TextBoxFor(model => model.State, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.State)
+           </p>
+
+            <p>
+           @Html.Label("City:")
+           @Html.TextBoxFor(model => model.City, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.City)
+           </p>
+
+
+            <p>
+           @Html.Label("ZipCode:")
+           @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.ZipCode)
+           </p>
+           <p>
+           @Html.Label("Role:")
+           @Html.DropDownList("Role", 
+           Html.GetEnumSelectList<Role>(),
+           "Select Role",new { @class = "form-control" })
+           @Html.ValidationMessageFor(model=>model.RoleEnum)
+           </p>
+
+           <p>
+           @Html.Label("Username:")
+           @Html.TextBoxFor(model => model.Username, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.Username)
+           </p>
+       
+
+           <p>
+           @Html.Label("Pasword:")
+           @Html.TextBoxFor(model => model.Password, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.Password)
+           </p>
+
+            <button type="submit" class="btn btn-info">Submit</button>
+
+        </form>
+
+</body>
+</html>
