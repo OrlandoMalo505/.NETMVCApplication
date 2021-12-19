@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using WebApplication3.Models;
 
 namespace WebApplication3.Controllers
@@ -47,7 +48,7 @@ namespace WebApplication3.Controllers
         [HttpPost("/api/users/newProduct")]
         public IActionResult NewProduct(Product pmodel)
         {
-            if (pmodel.CheckCode(pmodel.ProductCode) == 1)
+            if (pmodel.CheckCode((int)pmodel.ProductCode) == 1)
             {
                 ModelState.AddModelError("ProductCode", "Product Code must be unique!");
             }
@@ -100,7 +101,7 @@ namespace WebApplication3.Controllers
         {
             Product product = new Product();
             Product pmodel = product.getProductById(id);
-            int userid = pmodel.UserId;
+            int userid = (int)pmodel.UserId;
 
             product.DeleteProductById(id);
 
@@ -109,5 +110,34 @@ namespace WebApplication3.Controllers
 
         }
 
+
+        [Authorize(Roles = "USER")]
+        [HttpGet("/api/reports")]
+        public IActionResult Reports()
+        {
+    
+            return View();
+
+        }
+
+
+        [Authorize(Roles = "USER")]
+        [HttpPost("/api/reports")]
+        public IActionResult PostReports(Product product)
+        {
+
+             if(product.ProductType == null && product.ProductName==null && product.ProductPrice==null && product.ProductQuantity==null)
+            {
+                ViewBag.Error = "No products found.";
+                return View("~/Views/Product/Reports.cshtml");
+            }
+
+           
+                List<Product> list = new Product().GenerateReport(product);
+
+                return View("~/Views/Product/GeneratedReport.cshtml", list);
+
+
+        }
     }
 }

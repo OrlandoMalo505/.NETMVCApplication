@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>All Products</title>
+    <title>Generated Report</title>
      <script src="~/lib/jquery/dist/jquery.js"></script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
@@ -28,10 +28,6 @@
                      <th>Product Quantity</th>
                     <th>Product Cost</th>
                     <th>Product Code</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    <th>Back to Profile</th>
-
                 </tr>
             </thead>
             <tbody>
@@ -42,22 +38,15 @@
                     <td>$@product.ProductPrice </td>
                     <td>@product.ProductQuantity</td>
                     <td>$@product.ProductCost </td>
-                    <td>@product.ProductCode</td>
-                
-                    <td><a class="btn btn-info" href="/api/users/products/edit/@product.ProductId">Edit</a></td>
-                    <td><a href="/api/users/products/delete/@product.ProductId" id="deleteBtn" class="btn bg-danger mr-1" onclick="return confirm('Are you sure you want to delete?');"><i class="fas fa-trash-alt text-white"></i>Delete</a></td>
-                    <td><a class="btn btn-info" href="/api/users/@product.UserId">Back to Profile</a></td>
-
-                  
+                    <td>@product.ProductCode</td> 
                 </tr>
                 }
             </tbody>
         </table>
+       
 
-        <p>
-            <a href="/api/users/newProduct" class="btn btn-primary btn-lg">Add Product</a> 
-        </p>
 </body>
 </html>
+
 
 

@@ -1,0 +1,88 @@
+﻿@model Product
+
+
+@{
+    Layout ="~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Reports</title>
+     <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+ 
+        
+        <form  method="post" action="/api/reports">
+            <p>
+           @Html.Label("Product Name:")
+           @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control"})
+          
+           </p>
+           <p>
+           @Html.Label("Product Type:")
+           @Html.TextBoxFor(model => model.ProductType, new { @class = "form-control"})
+           
+           </p>
+
+          @* <p>
+           @Html.Label("Product Price:")
+           @Html.DropDownList("PriceSign:", new List<SelectListItem>
+           {
+             new SelectListItem{ Text="=", Value = "=" },
+             new SelectListItem{ Text=">", Value = ">" },
+             new SelectListItem{ Text="<", Value = "<" }
+   
+            })
+           @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control"})
+           
+           </p>*@
+
+
+
+           <p >
+           @Html.Label("Price:")
+           @Html.DropDownList("PriceSign", 
+           Html.GetEnumSelectList<Operators>(),
+           "Select Operator",new { @class = "form-control" })
+           @Html.ValidationMessageFor(model=>model.operators)
+           @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control"})
+           </p>
+           
+            @*<p>
+           @Html.Label("Product Quantity:")
+           @Html.DropDownList("QuantitySign:", new List<SelectListItem>
+           {
+             new SelectListItem{ Text="=", Value = "1" },
+             new SelectListItem{ Text=">", Value = "2" },
+             new SelectListItem{ Text="<", Value = "3" }
+            })
+           @Html.TextBoxFor(model => model.ProductQuantity, new { @class = "form-control"})
+           
+           </p>*@
+
+            <p >
+           @Html.Label("Quantity:")
+           @Html.DropDownList("QuantitySign", 
+           Html.GetEnumSelectList<Operators>(),
+           "Select Operator",new { @class = "form-control" })
+           @Html.ValidationMessageFor(model=>model.operators)
+           @Html.TextBoxFor(model => model.ProductQuantity, new { @class = "form-control"})
+           </p>
+
+        
+            <button type="submit" class="btn btn-info">Filter</button>
+
+        </form>
+
+
+<p style="color:red">
+    @ViewBag.Error
+</p>
+
+</body>
+</html>
+
