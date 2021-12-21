@@ -2,8 +2,8 @@
 {
     public enum Operators
     {
-        EQUAL = '=',
-        LESS = '<',
-        GREATER = '>'
+        EQUAL,
+        LESS,
+        GREATER
     }
 }

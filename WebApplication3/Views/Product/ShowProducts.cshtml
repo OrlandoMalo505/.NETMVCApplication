@@ -30,8 +30,7 @@
                     <th>Product Code</th>
                     <th>Edit</th>
                     <th>Delete</th>
-                    <th>Back to Profile</th>
-
+                   
                 </tr>
             </thead>
             <tbody>
@@ -46,7 +45,7 @@
                 
                     <td><a class="btn btn-info" href="/api/users/products/edit/@product.ProductId">Edit</a></td>
                     <td><a href="/api/users/products/delete/@product.ProductId" id="deleteBtn" class="btn bg-danger mr-1" onclick="return confirm('Are you sure you want to delete?');"><i class="fas fa-trash-alt text-white"></i>Delete</a></td>
-                    <td><a class="btn btn-info" href="/api/users/@product.UserId">Back to Profile</a></td>
+                    
 
                   
                 </tr>
@@ -55,8 +54,10 @@
         </table>
 
         <p>
-            <a href="/api/users/newProduct" class="btn btn-primary btn-lg">Add Product</a> 
+            <a href="/api/users/newProduct" class="btn btn-primary btn-lg" >Add Product</a> 
+            <a href="/api/profile" class="btn btn-primary btn-lg" >Back To Profile</a>
         </p>
+       
 </body>
 </html>
 

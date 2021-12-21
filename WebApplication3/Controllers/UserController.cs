@@ -177,5 +177,22 @@ namespace WebApplication3.Controllers
             return View("~/Views/Home/Signup.cshtml", user);
         }
 
+        [Authorize(Roles ="USER,ADMIN")]
+        [HttpGet("/api/profile")]
+        public IActionResult Profile()
+        {
+            int USERID = (int)HttpContext.Session.GetInt32("CurrentId");
+            int role = (int)HttpContext.Session.GetInt32("CurrentRole");
+
+
+            if (role == (int)Role.USER)
+            {
+                return RedirectToAction("GetSingleUser", "User", new { id = USERID });
+            }
+
+            return RedirectToAction("AllUsers", "User");
+
+        }
+
     }
 }

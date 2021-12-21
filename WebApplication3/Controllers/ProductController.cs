@@ -111,33 +111,47 @@ namespace WebApplication3.Controllers
         }
 
 
-        [Authorize(Roles = "USER")]
+        [Authorize(Roles = "USER,ADMIN")]
         [HttpGet("/api/reports")]
         public IActionResult Reports()
         {
-    
+
             return View();
 
         }
 
 
-        [Authorize(Roles = "USER")]
+        [Authorize(Roles = "USER,ADMIN")]
         [HttpPost("/api/reports")]
         public IActionResult PostReports(Product product)
         {
 
-             if(product.ProductType == null && product.ProductName==null && product.ProductPrice==null && product.ProductQuantity==null)
+            if (product.ProductType == null && product.ProductName == null && product.ProductPrice == null && product.ProductQuantity == null)
             {
                 ViewBag.Error = "No products found.";
                 return View("~/Views/Product/Reports.cshtml");
             }
 
-           
-                List<Product> list = new Product().GenerateReport(product);
+            int role = (int)HttpContext.Session.GetInt32("CurrentRole");
+            int id = (int)HttpContext.Session.GetInt32("CurrentId");
+
+            if (role == (int)Role.ADMIN)
+            {
+                product.UserId = id;
+                List<Product> list = new Product().GenerateReport(product, false);
 
                 return View("~/Views/Product/GeneratedReport.cshtml", list);
+            }
+            else if (role == (int)Role.USER)
+            {
+                product.UserId = id;
 
+                List<Product> list = new Product().GenerateReport(product, true);
 
+                return View("~/Views/Product/GeneratedReport.cshtml", list);
+            }
+
+            return View("~/Views/Product/GeneratedReport.cshtml");
         }
     }
 }

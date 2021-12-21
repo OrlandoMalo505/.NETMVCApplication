@@ -52,7 +52,8 @@ namespace WebApplication3.Models
 
 
 
-        public List<User> GetAllUsers()
+        public List<User> GetAllUsers
+            ()
         {
             Database datab = new Database();
             var cnn = datab.database();
@@ -187,25 +188,17 @@ namespace WebApplication3.Models
         public int CheckUser(string username)
 
         {
-            string connect = @"Data Source=DESKTOP-D29MF8M;Initial Catalog=login;User ID=firstapp;Password=login";
+            Database datab = new Database();
+            var cnn = datab.database();
 
             string query = "SELECT COUNT(*) FROM Users WHERE Username = @UserName";
+            SqlCommand cmd = new SqlCommand(query, cnn);
 
-            using (SqlConnection conn = new SqlConnection(connect))
-
-            {
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-
-                {
-
-                    cmd.Parameters.AddWithValue("UserName", username);
-
-                    conn.Open();
-
-                    return (int)cmd.ExecuteScalar();
-
-                }
-            }
+            cmd.Parameters.AddWithValue("UserName", username);
+            cnn.Open();
+            int i = (int)cmd.ExecuteScalar();
+            cnn.Close();
+            return i;
         }
 
         public void DeleteUserById(int id)
@@ -219,7 +212,6 @@ namespace WebApplication3.Models
             SqlParameter param = new SqlParameter();
             cmd.Parameters.AddWithValue("id", id);
             cmd.ExecuteScalar();
-
 
         }
 

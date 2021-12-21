@@ -28,42 +28,16 @@
            
            </p>
 
-          @* <p>
-           @Html.Label("Product Price:")
-           @Html.DropDownList("PriceSign:", new List<SelectListItem>
-           {
-             new SelectListItem{ Text="=", Value = "=" },
-             new SelectListItem{ Text=">", Value = ">" },
-             new SelectListItem{ Text="<", Value = "<" }
-   
-            })
-           @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control"})
-           
-           </p>*@
-
-
-
-           <p >
+           <p>
            @Html.Label("Price:")
            @Html.DropDownList("PriceSign", 
            Html.GetEnumSelectList<Operators>(),
            "Select Operator",new { @class = "form-control" })
            @Html.ValidationMessageFor(model=>model.operators)
            @Html.TextBoxFor(model => model.ProductPrice, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.ProductPrice)
            </p>
-           
-            @*<p>
-           @Html.Label("Product Quantity:")
-           @Html.DropDownList("QuantitySign:", new List<SelectListItem>
-           {
-             new SelectListItem{ Text="=", Value = "1" },
-             new SelectListItem{ Text=">", Value = "2" },
-             new SelectListItem{ Text="<", Value = "3" }
-            })
-           @Html.TextBoxFor(model => model.ProductQuantity, new { @class = "form-control"})
-           
-           </p>*@
-
+    
             <p >
            @Html.Label("Quantity:")
            @Html.DropDownList("QuantitySign", 
@@ -71,6 +45,7 @@
            "Select Operator",new { @class = "form-control" })
            @Html.ValidationMessageFor(model=>model.operators)
            @Html.TextBoxFor(model => model.ProductQuantity, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.ProductQuantity)
            </p>
 
         
