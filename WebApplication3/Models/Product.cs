@@ -33,6 +33,7 @@ namespace WebApplication3.Models
         public int? QuantitySign { get; set; }
 
         public Operators operators { get; set; }
+        public List<Order> Orders { get; set; }
 
 
         public List<Product> GetAllProducts(int id)

@@ -1,0 +1,38 @@
+﻿@model Order
+
+
+@{
+    Layout ="~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>New Order</title>
+     <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+</head>
+<body>
+ 
+        
+        <form  method="post" action="/api/users/orders/newOrder">
+            <p>
+           @Html.Label("Order Name:")
+           @Html.TextBoxFor(model => model.OrderName, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.OrderName)
+           </p>
+    
+           <p>
+           @Html.Label("Order Description:")
+           @Html.TextBoxFor(model => model.OrderDescription, new { @class = "form-control"})
+           @Html.ValidationMessageFor(model=>model.OrderDescription)
+           </p>
+           
+
+            <button type="submit" class="btn btn-info">Submit</button>
+
+        </form>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿
+@model List<Order>
+
+
+@{
+    Layout = Layout ="~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All Products</title>
+     <script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>  
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+ 
+</head>
+<body>
+   
+<table id="users" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Order Name</th>
+                    <th>Order Number</th>
+                     <th>Order Description</th>
+                     
+                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Order order in Model){
+                <tr>
+                    <td>@order.OrderName</td>
+                    <td>@order.OrderNumber</td>
+                    <td>@order.OrderDescription </td>
+                   
+                
+                    
+@*                    <td><a href="/api/users/orders/delete/@order.OrderId" id="deleteBtn" class="btn bg-danger mr-1" onclick="return confirm('Are you sure you want to delete?');"><i class="fas fa-trash-alt text-white"></i>Delete</a></td>
+*@                    
+
+                  
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <p>
+           
+            <a href="/api/profile" class="btn btn-primary btn-lg" >Back To Profile</a>
+        </p>
+       
+</body>
+</html>
+
+
+

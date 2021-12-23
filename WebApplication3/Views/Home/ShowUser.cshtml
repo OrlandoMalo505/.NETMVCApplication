@@ -32,6 +32,7 @@
                     <th>Edit</th>
                     <th>Delete</th>
                     <th>Show Products</th>
+                   
                     
 
                 </tr>
@@ -52,6 +53,7 @@
                     <td><a href="~/api/users/delete/@Model.Id" id="deleteBtn" class="btn bg-danger mr-1" onclick="return confirm('Are you sure you want to delete?');"><i class="fas fa-trash-alt text-white"></i>Delete</a></td>
                     <td><a class="btn btn-info" href="/api/users/products/@Model.Id">Show Products</a></td>
                     
+                    
                 </tr>
                 
             </tbody>
@@ -61,6 +63,8 @@
         </p>
         <p>
             <a href="/api/reports" class="btn btn-info">Generate Reports</a>
+            <td><a class="btn btn-info" href="/api/users/orders/@Model.Id">Show Orders</a></td>
+             <a href="/api/users/newOrder" class="btn btn-info" >Add a Order</a> 
         </p>
 
 </body>
